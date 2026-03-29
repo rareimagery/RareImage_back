@@ -1,0 +1,23 @@
+uuid: 30a17424-cc72-4f4a-8eab-fd0fcbe9ece4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_website
+    - node.type.x_user_profile
+  module:
+    - link
+id: node.x_user_profile.field_x_website
+field_name: field_x_website
+entity_type: node
+bundle: x_user_profile
+label: 'Website URL'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 0
+field_type: link

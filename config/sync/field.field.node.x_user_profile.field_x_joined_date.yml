@@ -1,0 +1,21 @@
+uuid: 890a1985-9282-415d-a5a8-5e556e08b6c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_joined_date
+    - node.type.x_user_profile
+  module:
+    - datetime
+id: node.x_user_profile.field_x_joined_date
+field_name: field_x_joined_date
+entity_type: node
+bundle: x_user_profile
+label: 'Joined Date'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

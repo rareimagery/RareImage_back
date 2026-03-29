@@ -1,0 +1,13 @@
+name: 'X Profile Auto Importer'
+type: module
+description: 'Automatically imports X profile data on user registration and creates an X User Profile node.'
+core_version_requirement: ^11
+dependencies:
+  - drupal:social_auth
+  - drupal:social_auth_twitter
+  - drupal:node
+  - drupal:user
+  - drupal:image
+  - drupal:datetime
+  - drupal:link
+  - drupal:text

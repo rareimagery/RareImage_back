@@ -1,0 +1,10 @@
+name: x_pfp_style
+label: 'X Profile Picture (400x400)'
+effects:
+  bddf0d06-42f9-4c75-a700-a33cafa25ea0:
+    uuid: bddf0d06-42f9-4c75-a700-a33cafa25ea0
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 400
+      height: 400

@@ -1,0 +1,21 @@
+uuid: 9d90a232-1acb-47c8-b786-5930aafbc5cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_verified
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_verified
+field_name: field_x_verified
+entity_type: node
+bundle: x_user_profile
+label: Verified
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,19 @@
+uuid: 224f1694-4963-4103-aa37-531d9dd06c7a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_location
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_location
+field_name: field_x_location
+entity_type: node
+bundle: x_user_profile
+label: Location
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

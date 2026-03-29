@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * Implements hook_user_insert().
+ */
+
+use Drupal\node\Entity\Node;
+use Abraham\TwitterOAuth\TwitterOAuth;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\File\FileExists;
+
+/**
+ * Implements hook_user_insert().
+ */
+function x_profile_auto_importer_user_insert($account) {
+  // Only run if the user provided an X username.
+  if ($account->get('field_x_username')->isEmpty()) {
+    return;
+  }
+
+  $x_username = $account->field_x_username->value;
+
+  // Load your X API keys from config.
+  $config = \Drupal::config('x_profile_auto_importer.settings');
+  $consumer_key = $config->get('consumer_key');
+  $consumer_secret = $config->get('consumer_secret');
+  $access_token = $config->get('access_token');
+  $access_token_secret = $config->get('access_token_secret');
+
+  // Log a warning and skip if any key is missing.
+  if (empty($consumer_key) || empty($consumer_secret) || empty($access_token) || empty($access_token_secret)) {
+    \Drupal::logger('x_profile_auto_importer')->warning('X API keys are not configured. Profile import skipped for @username.', ['@username' => $x_username]);
+    return;
+  }
+
+  $connection = new TwitterOAuth($consumer_key, $consumer_secret, $access_token, $access_token_secret);
+  $connection->setApiVersion('2');
+
+  try {
+    $response = $connection->get('users/by/username/' . $x_username, [
+      'user.fields' => 'profile_image_url,description,public_metrics,location,verified,created_at,entities',
+    ]);
+
+    if (empty($response->data)) {
+      \Drupal::logger('x_profile_auto_importer')->error('Failed to find X user: @username', ['@username' => $x_username]);
+      return;
+    }
+
+    $x_data = $response->data;
+
+    // Format date if present (e.g., 2013-11-28T10:10:35.000Z -> 2013-11-28)
+    $joined_date = NULL;
+    if (!empty($x_data->created_at)) {
+      $joined_date = substr($x_data->created_at, 0, 10);
+    }
+
+    // Extract website URL if present.
+    $website_url = NULL;
+    if (!empty($x_data->entities->url->urls[0]->expanded_url)) {
+      $website_url = $x_data->entities->url->urls[0]->expanded_url;
+    }
+
+    // Create the X User Profile node.
+    $node_data = [
+      'type' => 'x_user_profile',
+      'title' => $x_data->name ?? $x_data->username,
+      'field_x_user_id' => (string) $x_data->id,
+      'field_x_username' => $x_data->username,
+      'field_x_display_name' => $x_data->name ?? '',
+      'field_x_bio' => [
+        'value' => $x_data->description ?? '',
+        'format' => 'basic_html',
+      ],
+      'field_x_verified' => !empty($x_data->verified),
+      'field_x_location' => $x_data->location ?? '',
+      'field_x_followers' => $x_data->public_metrics->followers_count ?? 0,
+      'field_x_following' => $x_data->public_metrics->following_count ?? 0,
+      'field_x_post_count' => $x_data->public_metrics->tweet_count ?? 0,
+      'field_x_joined_date' => $joined_date,
+      'field_x_linked_user' => $account->id(),
+      'field_x_raw_json' => json_encode($x_data),
+    ];
+
+    if ($website_url) {
+      $node_data['field_x_website'] = [
+        'uri' => $website_url,
+        'title' => '',
+      ];
+    }
+
+    $node = Node::create($node_data);
+
+    // Profile Picture (PFP).
+    if (!empty($x_data->profile_image_url)) {
+      $pfp_url = str_replace('_normal', '_400x400', $x_data->profile_image_url);
+      $pfp_file = _x_profile_auto_importer_save_remote_image($pfp_url, 'x-pfps');
+      if ($pfp_file) {
+        $node->field_x_pfp = [
+          'target_id' => $pfp_file->id(),
+          'alt' => $x_data->username . ' profile picture',
+        ];
+      }
+    }
+
+    $node->save();
+    \Drupal::logger('x_profile_auto_importer')->info('Successfully created X User Profile for user: @username.', ['@username' => $x_username]);
+
+  } catch (\Exception $e) {
+    \Drupal::logger('x_profile_auto_importer')->error('Failed to import X profile: @error', ['@error' => $e->getMessage()]);
+  }
+}
+
+/**
+ * Helper: Download remote image and save to file system.
+ */
+function _x_profile_auto_importer_save_remote_image($url, $directory) {
+  try {
+    $client = \Drupal::httpClient();
+    $response = $client->get($url);
+    if ($response->getStatusCode() != 200) {
+      return NULL;
+    }
+    $data = $response->getBody()->getContents();
+
+    $file_system = \Drupal::service('file_system');
+    $destination = 'public://' . $directory;
+
+    // Ensure the directory exists.
+    $file_system->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+
+    // Create a filename from the URL.
+    $filename = basename(parse_url($url, PHP_URL_PATH));
+    $file_path = $destination . '/' . $filename;
+
+    // Save the file.
+    $file = \Drupal::service('file.repository')->writeData($data, $file_path, FileExists::Replace);
+
+    if ($file) {
+      $file->setPermanent();
+      $file->save();
+      return $file;
+    }
+  } catch (\Exception $e) {
+    \Drupal::logger('x_profile_auto_importer')->error('Failed to download image from @url: @error', [
+      '@url' => $url,
+      '@error' => $e->getMessage(),
+    ]);
+  }
+  return NULL;
+}

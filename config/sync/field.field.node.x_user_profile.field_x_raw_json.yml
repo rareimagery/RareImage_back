@@ -1,0 +1,19 @@
+uuid: 40998d8a-54cf-4b22-89b9-741c01755fc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_raw_json
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_raw_json
+field_name: field_x_raw_json
+entity_type: node
+bundle: x_user_profile
+label: 'Raw JSON Data'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

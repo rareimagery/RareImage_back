@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_linked_user
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_linked_user
+field_name: field_x_linked_user
+entity_type: node
+bundle: x_user_profile
+label: 'Linked User'
+description: 'The Drupal user linked to this X profile.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

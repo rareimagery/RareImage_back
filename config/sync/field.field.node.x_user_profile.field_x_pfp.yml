@@ -1,0 +1,38 @@
+uuid: 47f78762-8afc-43a6-9655-64eba83f16e6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_pfp
+    - node.type.x_user_profile
+  module:
+    - image
+id: node.x_user_profile.field_x_pfp
+field_name: field_x_pfp
+entity_type: node
+bundle: x_user_profile
+label: 'Profile Picture (PFP)'
+description: ''
+required: true
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: x-pfps
+  file_extensions: 'png jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: 400x400
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: null
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

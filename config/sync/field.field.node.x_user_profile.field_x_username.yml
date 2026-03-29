@@ -1,0 +1,19 @@
+uuid: 0b6e30b9-7b37-49dd-93f7-79cdcd2d8e0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_username
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_username
+field_name: field_x_username
+entity_type: node
+bundle: x_user_profile
+label: 'X Username (handle)'
+description: ''
+required: true
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

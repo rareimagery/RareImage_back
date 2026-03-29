@@ -1,0 +1,23 @@
+uuid: 0af355f9-9f8a-441e-a9b5-6fd60794da59
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_post_count
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_post_count
+field_name: field_x_post_count
+entity_type: node
+bundle: x_user_profile
+label: 'Post Count'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

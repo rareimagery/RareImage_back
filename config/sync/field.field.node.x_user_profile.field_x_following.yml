@@ -1,0 +1,23 @@
+uuid: 373488c3-d41f-4176-bef1-db4ba7a01502
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_following
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_following
+field_name: field_x_following
+entity_type: node
+bundle: x_user_profile
+label: 'Following Count'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

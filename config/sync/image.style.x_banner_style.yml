@@ -1,0 +1,10 @@
+name: x_banner_style
+label: 'X Banner (1500x500)'
+effects:
+  ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d:
+    uuid: ddd73aa7-4bd6-4c85-b600-bdf2b1628d1d
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 1500
+      height: 500

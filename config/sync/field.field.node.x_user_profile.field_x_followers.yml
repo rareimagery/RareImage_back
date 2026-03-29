@@ -1,0 +1,23 @@
+uuid: 95df6e35-1ecb-43cd-8ed1-1780cc4a60b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_followers
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_followers
+field_name: field_x_followers
+entity_type: node
+bundle: x_user_profile
+label: 'Follower Count'
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

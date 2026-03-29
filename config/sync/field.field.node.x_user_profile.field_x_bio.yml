@@ -1,0 +1,24 @@
+uuid: 3323e3b8-b571-4838-9954-1a1986bc8bf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_bio
+    - filter.format.none
+    - node.type.x_user_profile
+  module:
+    - text
+id: node.x_user_profile.field_x_bio
+field_name: field_x_bio
+entity_type: node
+bundle: x_user_profile
+label: Bio
+description: ''
+required: false
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - none
+field_type: text_long

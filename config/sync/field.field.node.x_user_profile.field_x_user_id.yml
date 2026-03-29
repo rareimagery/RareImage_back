@@ -1,0 +1,23 @@
+uuid: 26fb7da9-46d3-4dfa-b8d7-e255b1fae66b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_x_user_id
+    - node.type.x_user_profile
+id: node.x_user_profile.field_x_user_id
+field_name: field_x_user_id
+entity_type: node
+bundle: x_user_profile
+label: 'X User ID'
+description: ''
+required: true
+translatable: null
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

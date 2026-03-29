@@ -1,0 +1,11 @@
+uuid: 18dfe3fd-3a01-43c7-a3b0-45ebe47e044d
+langcode: en
+status: true
+dependencies:
+  module:
+    - social_auth
+id: social_auth.token
+label: Token
+description: null
+targetEntityType: social_auth
+cache: true
