@@ -1,0 +1,17 @@
+# Ignore Composer-managed files
+/vendor/
+/web/sites/default/files/
+/web/sites/*/files/
+
+# Ignore settings with secrets
+/web/sites/default/settings.php
+/web/sites/default/settings.local.php
+
+# Ignore IDE and OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Ignore logs and caches
+/web/sites/default/files/private/
