@@ -7,7 +7,6 @@ label: Hoodie
 traits: {  }
 locked: false
 description: ''
-variationTypes:
-  - hoodie_variation
+variationTypes: {  }
 multipleVariations: true
 injectVariationFields: true

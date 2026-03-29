@@ -23,6 +23,7 @@ module:
   commerce_product: 0
   commerce_store: 0
   config: 0
+  consumers: 0
   contextual: 0
   datetime: 0
   dblog: 0
@@ -51,11 +52,11 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
-  pgsql: 0
   profile: 0
   search: 0
   serialization: 0
   shortcut: 0
+  simple_oauth: 0
   social_api: 0
   social_auth: 0
   social_auth_twitter: 0

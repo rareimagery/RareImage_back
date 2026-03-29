@@ -29,6 +29,7 @@
         "drupal/gin_toolbar": "^3.0",
         "drupal/inline_entity_form": "^3.0@RC",
         "drupal/pathauto": "^1.14",
+        "drupal/simple_oauth": "^6.1",
         "drupal/social_auth": "^4.1",
         "drupal/social_auth_twitter": "4.0.x-dev",
         "drupal/token": "^1.17",

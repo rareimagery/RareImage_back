@@ -7,7 +7,6 @@ label: Ballcap
 traits: {  }
 locked: false
 description: ''
-variationTypes:
-  - ballcap_variation
+variationTypes: {  }
 multipleVariations: true
 injectVariationFields: true

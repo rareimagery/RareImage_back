@@ -1,0 +1,277 @@
+[main 9a38d55c] Install and enable drupal/simple_oauth:^6.1
+ 249 files changed, 21853 insertions(+), 27 deletions(-)
+ create mode 100644 config/sync/key.key.drupal_key.yml
+ create mode 100644 config/sync/simple_oauth.oauth2_token.bundle.access_token.yml
+ create mode 100644 config/sync/simple_oauth.oauth2_token.bundle.auth_code.yml
+ create mode 100644 config/sync/simple_oauth.oauth2_token.bundle.refresh_token.yml
+ create mode 100644 config/sync/simple_oauth.settings.yml
+ create mode 100644 package-lock.json
+ create mode 100644 web/modules/contrib/consumers/.gitlab-ci.yml
+ create mode 100644 web/modules/contrib/consumers/LICENSE.txt
+ create mode 100644 web/modules/contrib/consumers/README.md
+ create mode 100644 web/modules/contrib/consumers/composer.json
+ create mode 100644 web/modules/contrib/consumers/consumers.api.php
+ create mode 100644 web/modules/contrib/consumers/consumers.info.yml
+ create mode 100644 web/modules/contrib/consumers/consumers.install
+ create mode 100644 web/modules/contrib/consumers/consumers.links.action.yml
+ create mode 100644 web/modules/contrib/consumers/consumers.links.menu.yml
+ create mode 100644 web/modules/contrib/consumers/consumers.module
+ create mode 100644 web/modules/contrib/consumers/consumers.permissions.yml
+ create mode 100644 web/modules/contrib/consumers/consumers.post_update.php
+ create mode 100644 web/modules/contrib/consumers/consumers.services.yml
+ create mode 100644 web/modules/contrib/consumers/src/AccessControlHandler.php
+ create mode 100644 web/modules/contrib/consumers/src/ConsumerListBuilder.php
+ create mode 100644 web/modules/contrib/consumers/src/ConsumerRouteEnhancer.php
+ create mode 100644 web/modules/contrib/consumers/src/ConsumerStorage.php
+ create mode 100644 web/modules/contrib/consumers/src/ConsumersStorageSchema.php
+ create mode 100644 web/modules/contrib/consumers/src/Entity/Consumer.php
+ create mode 100644 web/modules/contrib/consumers/src/Entity/ConsumerInterface.php
+ create mode 100644 web/modules/contrib/consumers/src/Entity/Form/ConsumerForm.php
+ create mode 100644 web/modules/contrib/consumers/src/Entity/Form/MakeDefaultForm.php
+ create mode 100644 web/modules/contrib/consumers/src/Entity/Routing/HtmlRouteProvider.php
+ create mode 100644 web/modules/contrib/consumers/src/EventSubscriber/ConsumerVaryEventSubscriber.php
+ create mode 100644 web/modules/contrib/consumers/src/MissingConsumer.php
+ create mode 100644 web/modules/contrib/consumers/src/Negotiator.php
+ create mode 100644 web/modules/contrib/consumers/src/NegotiatorInterface.php
+ create mode 100644 web/modules/contrib/consumers/src/Plugin/Menu/ConsumersCollectionLink.php
+ create mode 100644 web/modules/contrib/consumers/src/Plugin/Menu/LocalAction/AddConsumerAction.php
+ create mode 100644 web/modules/contrib/consumers/templates/consumer.html.twig
+ create mode 100644 web/modules/contrib/consumers/tests/modules/consumers_test/consumers_test.info.yml
+ create mode 100644 web/modules/contrib/consumers/tests/modules/consumers_test/consumers_test.module
+ create mode 100644 web/modules/contrib/consumers/tests/modules/consumers_test/src/ConsumerClientIDTestField.php
+ create mode 100644 web/modules/contrib/consumers/tests/src/Functional/CacheabilityTest.php
+ create mode 100644 web/modules/contrib/consumers/tests/src/Kernel/ConsumerTest.php
+ create mode 100644 web/modules/contrib/consumers/tests/src/Kernel/NegotiatorTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/.gitlab-ci.yml
+ create mode 100644 web/modules/contrib/simple_oauth/LICENSE.txt
+ create mode 100644 web/modules/contrib/simple_oauth/README.md
+ create mode 100644 web/modules/contrib/simple_oauth/composer.json
+ create mode 100644 web/modules/contrib/simple_oauth/config/install/simple_oauth.oauth2_token.bundle.access_token.yml
+ create mode 100644 web/modules/contrib/simple_oauth/config/install/simple_oauth.oauth2_token.bundle.auth_code.yml
+ create mode 100644 web/modules/contrib/simple_oauth/config/install/simple_oauth.oauth2_token.bundle.refresh_token.yml
+ create mode 100644 web/modules/contrib/simple_oauth/config/install/simple_oauth.settings.yml
+ create mode 100644 web/modules/contrib/simple_oauth/config/schema/simple_oauth.schema.yml
+ create mode 100644 web/modules/contrib/simple_oauth/logo.png
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/README.md
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/modules/simple_oauth_static_scope_example/simple_oauth_static_scope_example.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/modules/simple_oauth_static_scope_example/simple_oauth_static_scope_example.oauth2_scopes.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/simple_oauth_static_scope.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/simple_oauth_static_scope.links.menu.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/simple_oauth_static_scope.routing.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/simple_oauth_static_scope.services.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Controller/Oauth2ScopePluginController.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/Oauth2Scope.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/Oauth2ScopeManager.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/Oauth2ScopeManagerInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/Oauth2ScopePluginAdapter.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/Oauth2ScopePluginInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/src/Plugin/ScopeProvider/StaticScopeProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/modules/simple_oauth_static_scope_legacy_test/simple_oauth_static_scope_legacy_test.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/modules/simple_oauth_static_scope_legacy_test/simple_oauth_static_scope_legacy_test.oauth2_scopes.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/modules/simple_oauth_static_scope_test/simple_oauth_static_scope_test.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/modules/simple_oauth_static_scope_test/simple_oauth_static_scope_test.oauth2_scopes.yml
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/Oauth2ScopePluginManagerLegacyTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/Oauth2ScopePluginManagerTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/Oauth2ScopePluginTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/Oauth2ScopeProviderTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/StaticScopeProviderTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Kernel/StaticScopeReferenceItemTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/modules/simple_oauth_static_scope/tests/src/Unit/Oauth2ScopeManagerTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.api.php
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.install
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.links.action.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.links.menu.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.links.task.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.module
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.permissions.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.post_update.php
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.routing.yml
+ create mode 100644 web/modules/contrib/simple_oauth/simple_oauth.services.yml
+ create mode 100644 web/modules/contrib/simple_oauth/src/Access/DecoratedUserRolesAccessPolicy.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Access/Oauth2AccessPolicy.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Annotation/Oauth2Grant.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Annotation/ScopeProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Attribute/ScopeGranularity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Authentication/Provider/SimpleOauthAuthenticationProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Authentication/TokenAuthUser.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Authentication/TokenAuthUserInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Cache/Oauth2ScopeCacheContext.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Controller/DebugController.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Controller/Jwks.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Controller/Oauth2AuthorizeController.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Controller/Oauth2GenerateKey.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Controller/Oauth2Token.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Controller/UserInfo.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Drush/Commands/SimpleOauthCommands.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/AccessTokenEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/AuthCodeEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/ClientEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/ClientEntityInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/JwksEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/OpenIdConnectScopeEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/RefreshTokenEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/ScopeEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/ScopeEntityInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/UserEntity.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entities/UserEntityWithClaims.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Access/AccessTokenAccessControlHandler.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Access/LockableConfigEntityAccessControlHandler.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Access/Oauth2ScopeAccessControlHandler.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/ConfigEntityLockableInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/ConfigEntityLockableTrait.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Form/Oauth2ScopeForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Form/Oauth2TokenDeleteForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2Scope.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2ScopeEntityAdapter.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2ScopeEntityInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2ScopeListBuilder.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2Token.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2TokenInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2TokenListBuilder.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2TokenStorageSchema.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2TokenType.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Entity/Oauth2TokenTypeInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/EventSubscriber/ExceptionLoggingSubscriber.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Exception/OAuthUnauthorizedHttpException.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/ExpiredCollector.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Form/Oauth2AuthorizeForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Form/Oauth2ClientCredentialsTokenCreateForm.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Form/Oauth2GenerateKeyForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Form/Oauth2TokenSettingsForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Form/OpenIdConnectSettingsForm.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/HttpMiddleware/BasicAuthSwap.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/KnownClientsRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/KnownClientsRepositoryInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Normalizer/RefreshTokenEntityNormalizer.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Normalizer/TokenEntityNormalizer.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Normalizer/TokenEntityNormalizerInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Normalizer/UserClaimsNormalizer.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeAdapterInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeProviderFactory.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeProviderFactoryInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Oauth2ScopeProviderInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/OpenIdConnect/OpenIdConnectIdTokenResponse.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/OpenIdConnect/OpenIdConnectScopeRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/OpenIdConnect/UserIdentityProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/PageCache/DisallowSimpleOauthRequests.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/PageCache/SimpleOauthRequestPolicyInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldFormatter/Oauth2ScopeReferenceLabelFormatter.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldType/Oauth2ScopeReferenceItem.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldType/Oauth2ScopeReferenceItemInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldType/Oauth2ScopeReferenceItemList.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldType/Oauth2ScopeReferenceItemListInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Field/FieldWidget/Oauth2ScopeReferenceWidget.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2Grant/AuthorizationCode.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2Grant/ClientCredentials.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2Grant/RefreshToken.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2GrantBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2GrantInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2GrantManager.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Oauth2GrantManagerInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularity/Permission.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularity/Role.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularityBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularityInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularityManager.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeGranularityRoleInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeProvider/DynamicScopeProvider.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeProviderBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeProviderInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeProviderManager.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/ScopeProviderManagerInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Validation/Constraint/Oauth2RedirectUri.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Validation/Constraint/Oauth2RedirectUriValidator.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Validation/Constraint/Oauth2ScopeReference.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Plugin/Validation/Constraint/Oauth2ScopeReferenceValidator.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/AccessTokenRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/AuthCodeRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/ClientRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/OptionalRefreshTokenRepositoryInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/RefreshTokenRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/RevocableTokenRepositoryTrait.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Repositories/ScopeRepository.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Server/AuthorizationServerFactory.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Server/AuthorizationServerFactoryInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Server/ResourceServerFactory.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Server/ResourceServerFactoryInterface.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Exception/ExtensionNotLoadedException.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Exception/FilesystemValidationException.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Filesystem/FileSystemChecker.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Filesystem/FileSystemCheckerInterface.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Filesystem/FilesystemValidator.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/Filesystem/FilesystemValidatorInterface.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/KeyGenerator.php
+ create mode 100755 web/modules/contrib/simple_oauth/src/Service/KeyGeneratorService.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/Service/KeyGeneratorServiceInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/TokenExpiryTriggerHandler.php
+ create mode 100644 web/modules/contrib/simple_oauth/src/TokenExpiryTriggerHandlerInterface.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/config/schema/simple_oauth_test.schema.yml
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/simple_oauth_test.info.yml
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/simple_oauth_test.routing.yml
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/simple_oauth_test.services.yml
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/src/Controller/RedirectDebug.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/src/Controller/Resource.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/src/Controller/TestOauth2Token.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/src/Plugin/ScopeGranularity/TestGranularity.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/modules/simple_oauth_test/src/Routing/SimpleOauthTestRouteSubscriber.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Functional/AuthCodeFunctionalTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Functional/Oauth2ClientCredentialsTokenCreateFormTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Functional/RequestHelperTrait.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Functional/SimpleOauthTestTrait.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Functional/TokenBearerFunctionalTestBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/FunctionalJavascript/ScopeGranularityFormTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/AuthorizedRequestBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/ClientCredentialsTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/ConsumerEntityTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/DynamicScopeProviderTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/DynamicScopeReferenceItemTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/Oauth2ScopeEntityTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/Oauth2ScopeProviderTestBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/Oauth2ScopeReferenceItemTestBase.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/Oauth2ScopeReferenceValidatorTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/OpenIdConnectTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/RefreshTokenTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/ScopeGranularityTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/SuperUserTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Kernel/TokenExpiryTriggerHandlerTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Unit/Authentication/Provider/SimpleOauthAuthenticationTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Unit/EntityCollectorTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Unit/Oauth2AccessPolicyTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Unit/Oauth2RedirectUriValidatorTest.php
+ create mode 100644 web/modules/contrib/simple_oauth/tests/src/Unit/Oauth2ScopeCacheContextTest.php
+Enumerating objects: 356, done.
+Counting objects: 100% (356/356), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (327/327), done.
+Writing objects: 100% (343/343), 203.92 KiB | 2.72 MiB/s, done.
+Total 343 (delta 44), reused 1 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (44/44), completed with 10 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote:
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote:
+remote:     - Push cannot contain secrets
+remote:
+remote:
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:
+remote:
+remote:       —— xAI API Key ———————————————————————————————————————
+remote:        locations:
+remote:          - commit: 9a38d55c4aff5ef21169d851aec9bc80911cf291
+remote:            path: config/sync/key.key.drupal_key.yml:12
+remote:
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/rareimagery/RareImage_back/security/secret-scanning/unblock-secret/3BbhpAz7oU4arFG0wkY0GQeYGTH
+remote:
+remote:
+remote:
+To github.com:rareimagery/RareImage_back.git
+ ! [remote rejected]   main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'github.com:rareimagery/RareImage_back.git'
