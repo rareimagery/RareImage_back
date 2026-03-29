@@ -7,6 +7,7 @@ label: T-Shirt
 traits: {  }
 locked: false
 description: ''
-variationTypes: {  }
+variationTypes:
+  - t_shirt_variation
 multipleVariations: true
 injectVariationFields: true
