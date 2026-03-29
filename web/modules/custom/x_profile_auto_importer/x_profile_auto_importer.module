@@ -9,6 +9,8 @@ use Drupal\node\Entity\Node;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\File\FileExists;
+use Drupal\node\NodeInterface;
+use Drupal\commerce_store\Entity\Store;
 
 /**
  * Implements hook_user_insert().
@@ -148,4 +150,67 @@ function _x_profile_auto_importer_save_remote_image($url, $directory) {
     ]);
   }
   return NULL;
+}
+
+/**
+ * Implements hook_node_insert().
+ */
+function x_profile_auto_importer_node_insert(NodeInterface $node) {
+  // Check if it's the correct node type.
+  if ($node->bundle() !== 'x_user_profile') {
+    return;
+  }
+
+  // Check if the commerce_store module is enabled.
+  if (!\Drupal::moduleHandler()->moduleExists('commerce_store')) {
+    return;
+  }
+
+  // Check if a store already exists for this profile node.
+  $storage = \Drupal::entityTypeManager()->getStorage('commerce_store');
+  $existing_stores = $storage->loadByProperties(['field_x_user_profile' => $node->id()]);
+  if (!empty($existing_stores)) {
+    return;
+  }
+
+  try {
+    // Get the owner's email from the linked user if possible.
+    $email = 'store-' . $node->id() . '@example.com';
+    $uid = 0;
+
+    if (!$node->get('field_x_linked_user')->isEmpty()) {
+      $linked_user = $node->get('field_x_linked_user')->entity;
+      if ($linked_user) {
+        $email = $linked_user->getEmail();
+        $uid = $linked_user->id();
+      }
+    }
+
+    $store_name = ($node->get('field_x_username')->value ?: $node->id()) . "'s Store";
+
+    $store = Store::create([
+      'type' => 'online',
+      'uid' => $uid,
+      'name' => $store_name,
+      'mail' => $email,
+      'default_currency' => 'USD',
+      'timezone' => 'UTC',
+      'address' => [
+        'country_code' => 'US', // Default to US or detect from field_x_location if possible.
+      ],
+      'field_x_user_profile' => [
+        'target_id' => $node->id(),
+      ],
+      'status' => TRUE,
+    ]);
+
+    $store->save();
+    \Drupal::logger('x_profile_auto_importer')->info('Successfully created X User Store for profile: @title.', ['@title' => $node->getTitle()]);
+
+  } catch (\Exception $e) {
+    \Drupal::logger('x_profile_auto_importer')->error('Failed to create store for @title: @error', [
+      '@title' => $node->getTitle(),
+      '@error' => $e->getMessage(),
+    ]);
+  }
 }

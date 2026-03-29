@@ -1,0 +1,10 @@
+uuid: 7b49061e-9339-402a-8373-21e633a675fc
+langcode: en
+status: true
+dependencies: {  }
+id: ballcap_variation
+label: 'Ballcap Variation'
+traits: {  }
+locked: false
+orderItemType: default
+generateTitle: true

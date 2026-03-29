@@ -1,0 +1,12 @@
+uuid: 75bc3992-772c-418e-a782-75abf1cbe228
+langcode: en
+status: true
+dependencies: {  }
+id: ballcap
+label: Ballcap
+traits: {  }
+locked: false
+description: ''
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true

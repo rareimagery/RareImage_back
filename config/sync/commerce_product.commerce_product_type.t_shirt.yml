@@ -1,0 +1,12 @@
+uuid: 2707fa1b-a96d-47a7-89e1-8db75b04006c
+langcode: en
+status: true
+dependencies: {  }
+id: t_shirt
+label: T-Shirt
+traits: {  }
+locked: false
+description: ''
+variationTypes: {  }
+multipleVariations: true
+injectVariationFields: true
